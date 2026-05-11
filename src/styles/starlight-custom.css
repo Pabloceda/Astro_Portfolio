@@ -1,0 +1,30 @@
+/* Starlight Custom CSS — Bridge between Cactus theme and Starlight docs */
+
+/* Match Cactus color scheme with Starlight variables */
+:root {
+	--sl-color-accent-low: #1a2b1a;
+	--sl-color-accent: #2bbc8a;
+	--sl-color-accent-high: #cdffb8;
+	--sl-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	--sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Dark mode overrides to match Cactus dark theme */
+:root[data-theme="dark"] {
+	--sl-color-bg-nav: #1d1f21;
+	--sl-color-bg-sidebar: #1d1f21;
+	--sl-color-bg: #1d1f21;
+	--sl-color-hairline-light: #383a3e;
+	--sl-color-hairline: #4a4c50;
+}
+
+/* Back-to-portfolio link in Starlight header */
+.sl-nav .back-to-site {
+	font-size: 0.875rem;
+	opacity: 0.7;
+	transition: opacity 0.2s;
+}
+
+.sl-nav .back-to-site:hover {
+	opacity: 1;
+}
