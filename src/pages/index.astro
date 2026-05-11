@@ -1,89 +1,200 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Note from "@/components/note/Note.astro";
 import SocialList from "@/components/SocialList.astro";
-import { getAllPosts } from "@/data/post";
-import PageLayout from "@/layouts/Base.astro";
-import { collectionDateSort } from "@/utils/date";
-
-// Posts
-const MAX_POSTS = 10;
-const allPosts = await getAllPosts();
-const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
-const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
-
-// Pinned Posts, set to a max of 3;
-const MAX_PINNED_POSTS = 3;
-const pinnedPosts = allPostsByDate
-	.values()
-	.filter((p) => p.data.pinned)
-	.take(MAX_PINNED_POSTS)
-	.toArray();
-
-// Notes, set to a max of 5
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes
-	.sort(collectionDateSort)
-	.slice(0, MAX_NOTES) as CollectionEntry<"note">[];
+import Meteors from "@/components/Meteors.astro";
+import LandingLayout from "@/layouts/Landing.astro";
 ---
 
-<PageLayout meta={{ title: "Inicio" }}>
-	<section>
-		<h1 class="title mb-12">¡Hola! Soy Pablo Calderón 👋</h1>
-		<p class="mb-4">
-			Técnico en Administración de Sistemas Informáticos en Red (ASIR). 
-			Apasionado por las redes, la seguridad informática y la automatización de infraestructuras. 
-			Este es mi espacio donde comparto mis proyectos, documentación técnica y artículos sobre lo que voy aprendiendo.
+<LandingLayout meta={{ title: "Portfolio" }}>
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- HERO — Pantalla completa                       -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section
+		class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 text-center"
+		id="hero"
+	>
+		<!-- Fondo de Meteoritos estilo Magic UI -->
+		<Meteors number={30} />
+
+		<div class="relative z-10 max-w-2xl">
+			<!-- Subtítulo con efecto de parpadeo escalonado y hover -->
+			<p class="text-accent mb-3 text-sm font-semibold uppercase tracking-widest cursor-default group">
+				<span class="inline-block animate-pulse hover:text-link hover:scale-105 transition-all">Administración de Sistemas</span>
+				<span class="mx-1 opacity-50">·</span>
+				<span class="inline-block animate-pulse hover:text-link hover:scale-105 transition-all" style="animation-delay: 0.3s">Redes</span>
+				<span class="mx-1 opacity-50">·</span>
+				<span class="inline-block animate-pulse hover:text-link hover:scale-105 transition-all" style="animation-delay: 0.6s">Seguridad</span>
+			</p>
+			
+			<!-- Título con efecto de máquina de escribir y hover resplandeciente -->
+			<h1 class="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl min-h-[40px] sm:min-h-[60px]">
+				<span 
+					id="typewriter-name" 
+					class="text-accent-2 inline-block cursor-default border-r-4 border-accent pr-2 hover-glow"
+				></span>
+			</h1>
+			<p class="text-muted mx-auto mb-8 max-w-lg text-base leading-relaxed sm:text-lg">
+				Técnico en ASIR. Construyo y documento infraestructuras de red seguras, despliegues
+				con Docker y sistemas de monitorización.
+			</p>
+			<SocialList />
+		</div>
+
+		<!-- Flecha de scroll -->
+		<a
+			aria-label="Ir a la sección sobre mí"
+			class="text-muted hover:text-accent absolute bottom-10 animate-bounce transition-colors"
+			href="#sobre-mi"
+		>
+			<svg
+				class="h-8 w-8"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+			>
+				<path d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" stroke-linecap="round" stroke-linejoin="round" />
+			</svg>
+		</a>
+	</section>
+
+	<script is:inline>
+		// Lógica del efecto Máquina de Escribir
+		const runTypewriter = () => {
+			const nameEl = document.getElementById('typewriter-name');
+			if (!nameEl) return;
+			
+			const text = "Pablo Calderón";
+			let i = 0;
+			nameEl.textContent = ""; // Limpiar texto al recargar
+			
+			// Añadir clase de parpadeo del cursor
+			nameEl.classList.add('animate-[blink_0.8s_step-end_infinite]');
+
+			setTimeout(() => {
+				const typeWriter = setInterval(() => {
+					if (i < text.length) {
+						nameEl.textContent += text.charAt(i);
+						i++;
+					} else {
+						clearInterval(typeWriter);
+					}
+				}, 80); // Velocidad de tipeo
+			}, 500); // Retraso inicial antes de empezar
+		};
+
+		// Ejecutar al cargar (compatible con View Transitions)
+		document.addEventListener('astro:page-load', runTypewriter);
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', runTypewriter);
+		} else {
+			runTypewriter();
+		}
+	</script>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- SOBRE MÍ                                       -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section class="mx-auto max-w-3xl scroll-mt-32 px-4 py-24 sm:px-8" id="sobre-mi">
+		<h2 class="title mb-8 text-xl">Sobre mí</h2>
+		<div class="prose prose-sm prose-cactus max-w-none">
+			<p>
+				Estudiante de 2º curso del CFGS en <strong>Administración de Sistemas Informáticos
+				en Red (ASIR)</strong>. Me apasiona la administración de sistemas, las redes y la
+				ciberseguridad.
+			</p>
+			<p>Durante mi formación he trabajado con:</p>
+			<div class="mt-4 grid gap-3 sm:grid-cols-2">
+				<div class="border-accent/20 rounded-md border p-3">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Redes & Seguridad</p>
+					<p class="text-muted text-xs">pfSense · VLANs · NAT · Wazuh SIEM</p>
+				</div>
+				<div class="border-accent/20 rounded-md border p-3">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Contenedores & Servers</p>
+					<p class="text-muted text-xs">Docker · Docker Compose · Ubuntu Server</p>
+				</div>
+				<div class="border-accent/20 rounded-md border p-3">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Virtualización</p>
+					<p class="text-muted text-xs">VirtualBox · VMware</p>
+				</div>
+				<div class="border-accent/20 rounded-md border p-3">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Documentación & Web</p>
+					<p class="text-muted text-xs">LaTeX · Markdown · Astro · Git</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- PROYECTOS                                      -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section class="mx-auto max-w-3xl scroll-mt-32 px-4 py-24 sm:px-8" id="proyectos">
+		<h2 class="title mb-4 text-xl">Proyectos</h2>
+		<p class="text-muted mb-10 text-sm">
+			Proyectos realizados durante el CFGS de ASIR. Algunos incluyen documentación técnica
+			detallada.
 		</p>
-		<p class="mb-4">
-			Explora mis <a class="cactus-link" href="/projects/">proyectos</a>, 
-			lee el <a class="cactus-link" href="/posts/">blog</a> 
-			o consulta la <a class="cactus-link" href="/guias/docker-compose-produccion/">documentación técnica</a>.
+
+		<div class="space-y-6">
+			<!-- Proyecto: Portfolio -->
+			<article
+				class="border-accent/20 group rounded-md border p-5 transition-all hover:border-accent"
+			>
+				<div class="mb-2 flex flex-wrap items-center gap-2">
+					<h3 class="text-base font-semibold">
+						<a class="cactus-link" href="/guias/desarrollo-portfolio/">
+							🌐 Portfolio Personal
+						</a>
+					</h3>
+					<span class="rounded-full bg-yellow-500/10 px-2 py-0.5 text-xs font-medium text-yellow-500">
+						En desarrollo
+					</span>
+				</div>
+				<p class="text-muted mb-3 text-sm">
+					Este sitio web. Construido con Astro (Cactus + Starlight), desplegado en GitHub Pages.
+				</p>
+				<div class="flex flex-wrap gap-1.5">
+					{["Astro", "Starlight", "Tailwind CSS", "GitHub Pages"].map((tag) => (
+						<span class="bg-accent/10 text-accent rounded-md px-2 py-0.5 text-xs">{tag}</span>
+					))}
+				</div>
+			</article>
+
+			<!-- Placeholder para futuros proyectos -->
+			<div class="border-muted/20 text-muted rounded-md border border-dashed p-5 text-center text-sm">
+				Más proyectos próximamente...
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- CONTACTO / CTA                                 -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section class="mx-auto max-w-3xl scroll-mt-32 px-4 py-24 sm:px-8" id="contacto">
+		<h2 class="title mb-6 text-xl">Contacto</h2>
+		<p class="text-muted mb-6 text-sm">
+			¿Quieres saber más o colaborar? Encuéntrame en:
 		</p>
 		<SocialList />
 	</section>
-	{
-		pinnedPosts.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title mb-6 text-xl">Posts Destacados</h2>
-				<ul class="space-y-4" role="list">
-					{pinnedPosts.map((p) => (
-						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-							<PostPreview post={p} />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
+</LandingLayout>
+
+<style>
+	@keyframes blink {
+		0%, 100% { border-color: transparent; }
+		50% { border-color: var(--color-accent); }
 	}
-	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Últimos Posts</a></h2>
-		<ul class="space-y-4" role="list">
-			{
-				latestPosts.map((p) => (
-					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-						<PostPreview post={p} />
-					</li>
-				))
-			}
-		</ul>
-	</section>
-	{
-		latestNotes.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notas</a>
-				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
+
+	/* Efecto glow adaptativo según el tema (claro/oscuro) */
+	.hover-glow {
+		transition: filter 0.3s ease, transform 0.3s ease;
 	}
-</PageLayout>
+	.hover-glow:hover {
+		/* Sombra sutil de profundidad en modo claro */
+		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+		transform: translateY(-4px);
+	}
+	:global([data-theme="dark"]) .hover-glow:hover {
+		/* Resplandor claro e iluminado en modo oscuro */
+		filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+	}
+</style>

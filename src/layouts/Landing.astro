@@ -1,10 +1,10 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
+import CustomCursor from "@/components/CustomCursor.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
-import CustomCursor from "@/components/CustomCursor.astro";
 import { siteConfig } from "@/site.config";
 import type { SiteMeta } from "@/types";
 
@@ -22,16 +22,28 @@ const {
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 		<ThemeProvider />
 	</head>
-	<body
-		class="bg-global-bg text-global-text mx-auto flex min-h-screen max-w-3xl flex-col px-4 pt-16 font-mono text-sm font-normal antialiased sm:px-8 relative"
-	>
+	<body class="bg-global-bg text-global-text font-mono text-sm font-normal antialiased relative">
 		<CustomCursor />
+
 		<SkipLink />
-		<Header />
-		<main id="main">
-			<slot />
-		</main>
-		<Footer />
+		<!-- Header fijo con fondo y blur -->
+		<div class="bg-global-bg/80 fixed top-0 right-0 left-0 z-50 backdrop-blur-md">
+			<div class="mx-auto max-w-3xl px-4 pt-4 pb-2 sm:px-8">
+				<Header />
+			</div>
+		</div>
+		
+		<!-- Contenedor principal con z-index superior al fondo -->
+		<div class="relative z-10">
+			<main id="main">
+				<slot />
+			</main>
+			<!-- Footer con el ancho estándar -->
+			<div class="mx-auto max-w-3xl px-4 sm:px-8">
+				<Footer />
+			</div>
+		</div>
+
 		<script is:inline type="speculationrules">
 			{
 				"prefetch": [

@@ -1,0 +1,74 @@
+---
+// Cuberto Mouse Follower CSS
+import 'mouse-follower/dist/mouse-follower.min.css';
+---
+
+<script>
+	import MouseFollower from "mouse-follower";
+	import gsap from "gsap";
+
+	// Es necesario registrar GSAP
+	MouseFollower.registerGSAP(gsap);
+
+	let cursorInstance: any = null;
+
+	const initCursor = () => {
+		// Destruir instancia previa si existe (útil con view transitions de Astro)
+		if (cursorInstance) {
+			cursorInstance.destroy();
+		}
+
+		cursorInstance = new MouseFollower({
+			speed: 0.6,
+			ease: 'expo.out',
+			overwrite: true,
+			skewing: 1,      // Añade un efecto de deformación suave al mover rápido
+			skewingText: 2,
+			stateDetection: {
+				'-pointer': 'a,button, [data-cursor-pointer]',
+				'-hidden': 'iframe'
+			}
+		});
+	};
+
+	// Inicializar al cargar la página
+	document.addEventListener('astro:page-load', initCursor);
+	
+	// Si no usa view transitions, Astro emite DOMContentLoaded
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initCursor);
+	} else {
+		initCursor();
+	}
+</script>
+
+<style is:global>
+	/* Contenedor principal del cursor: aplicamos el efecto de mezcla (blend mode) premium */
+	.mf-cursor {
+		mix-blend-mode: difference;
+		z-index: 1000;
+	}
+
+	/* El punto en sí */
+	.mf-cursor:before {
+		/* Con 'difference', el blanco puro se convierte en negro puro sobre fondos blancos, 
+		   y en blanco puro sobre fondos oscuros. Garantiza máximo contraste siempre. */
+		background-color: #ffffff !important;
+		transform: scale(0.2); /* Punto un poco más grande y visible */
+		opacity: 1 !important; /* Intenso y sólido */
+		transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-radius 0.4s ease;
+	}
+
+	/* Efecto premium al pasar por encima de un enlace */
+	.mf-cursor.-pointer:before {
+		transform: scale(0.8); /* Tamaño reducido y más sutil al pasar por enlaces */
+		/* Al crecer con mix-blend-mode: difference, invierte el color exacto del texto 
+		   que queda debajo del círculo. Es el estándar en portfolios de alto nivel. */
+	}
+	
+	/* Efecto texto (si añades el atributo data-cursor-text a algún elemento) */
+	.mf-cursor.-text:before {
+		opacity: 1 !important;
+		transform: scale(2.5);
+	}
+</style>

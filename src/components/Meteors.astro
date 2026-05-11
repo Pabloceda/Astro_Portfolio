@@ -1,0 +1,54 @@
+---
+interface Props {
+	number?: number;
+}
+const { number = 20 } = Astro.props;
+const meteors = new Array(number).fill(true);
+---
+
+<!-- Contenedor general que asegura que los meteoritos no se salgan del padre -->
+<div class="pointer-events-none absolute inset-0 overflow-hidden z-0">
+	{
+		meteors.map(() => {
+			// Iniciar los meteoros más hacia la derecha y arriba para que caigan cruzando
+			const left = Math.floor(Math.random() * 150) - 20 + "vw";
+			const top = Math.floor(Math.random() * 100) - 50 + "vh";
+			const delay = (Math.random() * 2 + 0.2).toFixed(2) + "s";
+			// Aumentado el tiempo (más lento) -> de 8s a 15s
+			const duration = Math.floor(Math.random() * 8 + 8) + "s";
+
+			return (
+				<span
+					class="meteor absolute h-0.5 w-0.5 rotate-[315deg] rounded-[9999px] bg-accent shadow-[0_0_10px_var(--color-accent)]"
+					style={`top: ${top}; left: ${left}; animation-delay: ${delay}; animation-duration: ${duration};`}
+				>
+					<!-- Cola del meteorito (usamos currentColor heredado o color base) -->
+					<div 
+						class="pointer-events-none absolute top-1/2 -z-10 h-[2px] w-[80px] -translate-y-1/2" 
+						style="background: linear-gradient(to right, var(--color-accent), transparent);"
+					/>
+				</span>
+			);
+		})
+	}
+</div>
+
+<style is:global>
+	@keyframes meteor {
+		0% {
+			transform: rotate(315deg) translateX(0);
+			opacity: 1;
+		}
+		70% {
+			opacity: 1;
+		}
+		100% {
+			/* translateX negativo se mueve hacia la "cabeza" del meteoro */
+			transform: rotate(315deg) translateX(-1800px);
+			opacity: 0;
+		}
+	}
+	.meteor {
+		animation: meteor 5s linear infinite;
+	}
+</style>

@@ -30,22 +30,18 @@ export default defineConfig({
 		// Starlight — Documentation section at /docs
 		starlight({
 			title: "Pablo Calderón — Docs",
-			defaultLocale: "es",
+			defaultLocale: "root",
 			locales: {
-				es: { label: "Español", lang: "es-ES" },
+				root: { label: "Español", lang: "es-ES" },
 			},
 			sidebar: [
 				{
-					label: "Inicio",
+					label: "← Volver al sitio",
 					link: "/",
 				},
 				{
 					label: "Guías Técnicas",
 					items: [{ autogenerate: { directory: "guias" } }],
-				},
-				{
-					label: "TFG — Infraestructura de Red",
-					items: [{ autogenerate: { directory: "tfg" } }],
 				},
 			],
 			customCss: ["./src/styles/starlight-custom.css"],

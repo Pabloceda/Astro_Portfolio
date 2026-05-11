@@ -37,20 +37,16 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Inicio",
 	},
 	{
-		path: "/about/",
+		path: "/#sobre-mi",
 		title: "Sobre mí",
+	},
+	{
+		path: "/#proyectos",
+		title: "Proyectos",
 	},
 	{
 		path: "/posts/",
 		title: "Blog",
-	},
-	{
-		path: "/projects/",
-		title: "Proyectos",
-	},
-	{
-		path: "/guias/docker-compose-produccion/",
-		title: "Docs",
 	},
 ];
 
