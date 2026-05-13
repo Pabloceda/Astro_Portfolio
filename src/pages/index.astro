@@ -63,23 +63,50 @@ import LandingLayout from "@/layouts/Landing.astro";
 			const nameEl = document.getElementById('typewriter-name');
 			if (!nameEl) return;
 			
+			// Evitar múltiples ejecuciones concurrentes al recargar la página con View Transitions
+			if (nameEl.hasAttribute('data-typing')) return;
+			nameEl.setAttribute('data-typing', 'true');
+			
 			const text = "Pablo Calderón";
 			let i = 0;
-			nameEl.textContent = ""; // Limpiar texto al recargar
+			let isDeleting = false;
+			nameEl.textContent = ""; // Limpiar texto al iniciar
 			
 			// Añadir clase de parpadeo del cursor
 			nameEl.classList.add('animate-[blink_0.8s_step-end_infinite]');
 
-			setTimeout(() => {
-				const typeWriter = setInterval(() => {
-					if (i < text.length) {
-						nameEl.textContent += text.charAt(i);
-						i++;
-					} else {
-						clearInterval(typeWriter);
-					}
-				}, 80); // Velocidad de tipeo
-			}, 500); // Retraso inicial antes de empezar
+			const type = () => {
+				// Detener la ejecución si el elemento ya no existe (por si el usuario navega a otra página)
+				if (!nameEl.isConnected) return;
+
+				if (isDeleting) {
+					// Borrando
+					nameEl.textContent = text.substring(0, i - 1);
+					i--;
+				} else {
+					// Escribiendo
+					nameEl.textContent = text.substring(0, i + 1);
+					i++;
+				}
+
+				// Velocidades base: 80ms escribir, 40ms borrar (más rápido)
+				let typingSpeed = isDeleting ? 40 : 80;
+
+				if (!isDeleting && i === text.length) {
+					// Cuando termina de escribir, espera 8 segundos antes de empezar a borrar
+					typingSpeed = 8000; 
+					isDeleting = true;
+				} else if (isDeleting && i === 0) {
+					// Cuando termina de borrar, espera medio segundo antes de volver a escribir
+					isDeleting = false;
+					typingSpeed = 500;
+				}
+
+				setTimeout(type, typingSpeed);
+			};
+
+			// Retraso inicial antes de empezar
+			setTimeout(type, 500); 
 		};
 
 		// Ejecutar al cargar (compatible con View Transitions)
