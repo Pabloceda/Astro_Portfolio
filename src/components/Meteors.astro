@@ -13,7 +13,8 @@ const meteors = new Array(number).fill(true);
 			// Iniciar los meteoros más hacia la derecha y arriba para que caigan cruzando
 			const left = Math.floor(Math.random() * 150) - 20 + "vw";
 			const top = Math.floor(Math.random() * 100) - 50 + "vh";
-			const delay = (Math.random() * 2 + 0.2).toFixed(2) + "s";
+			// Retraso NEGATIVO para que al cargar la página ya estén en movimiento (mid-flight)
+			const delay = -(Math.random() * 15 + 0.2).toFixed(2) + "s";
 			// Aumentado el tiempo (más lento) -> de 8s a 15s
 			const duration = Math.floor(Math.random() * 8 + 8) + "s";
 
@@ -49,6 +50,7 @@ const meteors = new Array(number).fill(true);
 		}
 	}
 	.meteor {
+		opacity: 0; /* Oculto por defecto hasta que empieza la animación */
 		animation: meteor 5s linear infinite;
 	}
 </style>
