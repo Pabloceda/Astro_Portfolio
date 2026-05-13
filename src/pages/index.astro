@@ -94,7 +94,7 @@ import LandingLayout from "@/layouts/Landing.astro";
 
 				if (!isDeleting && i === text.length) {
 					// Cuando termina de escribir, espera 8 segundos antes de empezar a borrar
-					typingSpeed = 8000; 
+					typingSpeed = 4000; 
 					isDeleting = true;
 				} else if (isDeleting && i === 0) {
 					// Cuando termina de borrar, espera medio segundo antes de volver a escribir
@@ -131,21 +131,37 @@ import LandingLayout from "@/layouts/Landing.astro";
 			</p>
 			<p>Durante mi formación he trabajado con:</p>
 			<div class="mt-4 grid gap-3 sm:grid-cols-2">
-				<div class="border-accent/20 rounded-md border p-3">
-					<p class="text-accent mb-1 text-xs font-semibold uppercase">Redes & Seguridad</p>
-					<p class="text-muted text-xs">pfSense · VLANs · NAT · Wazuh SIEM</p>
+				<!-- Tarjeta 1 -->
+				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
+					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
+						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Redes & Seguridad</p>
+						<p class="text-muted text-xs">pfSense · VLANs · NAT · Wazuh SIEM</p>
+					</div>
 				</div>
-				<div class="border-accent/20 rounded-md border p-3">
-					<p class="text-accent mb-1 text-xs font-semibold uppercase">Contenedores & Servers</p>
-					<p class="text-muted text-xs">Docker · Docker Compose · Ubuntu Server</p>
+				<!-- Tarjeta 2 -->
+				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
+					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
+						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Contenedores & Servers</p>
+						<p class="text-muted text-xs">Docker · Docker Compose · Ubuntu Server</p>
+					</div>
 				</div>
-				<div class="border-accent/20 rounded-md border p-3">
-					<p class="text-accent mb-1 text-xs font-semibold uppercase">Virtualización</p>
-					<p class="text-muted text-xs">VirtualBox · VMware</p>
+				<!-- Tarjeta 3 -->
+				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
+					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
+						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Virtualización</p>
+						<p class="text-muted text-xs">VirtualBox · VMware</p>
+					</div>
 				</div>
-				<div class="border-accent/20 rounded-md border p-3">
-					<p class="text-accent mb-1 text-xs font-semibold uppercase">Documentación & Web</p>
-					<p class="text-muted text-xs">LaTeX · Markdown · Astro · Git</p>
+				<!-- Tarjeta 4 -->
+				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
+					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
+						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Documentación & Web</p>
+						<p class="text-muted text-xs">LaTeX · Markdown · Astro · Git</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -223,5 +239,25 @@ import LandingLayout from "@/layouts/Landing.astro";
 	:global([data-theme="dark"]) .hover-glow:hover {
 		/* Resplandor claro e iluminado en modo oscuro */
 		filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+	}
+
+	/* Efecto Border Beam para las tarjetas */
+	.card-beam {
+		background: conic-gradient(
+			from 0deg at 50% 50%,
+			transparent 75%,
+			var(--color-accent) 90%,
+			var(--color-link) 100%
+		);
+		animation: spin-beam 4s linear infinite;
+		/* Tamaño sobredimensionado para que al rotar cubra las esquinas rectangulares */
+		width: 250%;
+		height: 250%;
+		top: -75%;
+		left: -75%;
+	}
+	@keyframes spin-beam {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
 	}
 </style>
