@@ -122,8 +122,8 @@ import LandingLayout from "@/layouts/Landing.astro";
 	<!-- SOBRE MÍ                                       -->
 	<!-- ═══════════════════════════════════════════════ -->
 	<section class="mx-auto max-w-3xl scroll-mt-32 px-4 py-24 sm:px-8" id="sobre-mi">
-		<h2 class="title mb-8 text-xl">Sobre mí</h2>
-		<div class="prose prose-sm prose-cactus max-w-none">
+		<h2 class="title mb-8 text-xl reveal">Sobre mí</h2>
+		<div class="prose prose-sm prose-cactus max-w-none reveal" style="transition-delay: 150ms;">
 			<p>
 				Estudiante de 2º curso del CFGS en <strong>Administración de Sistemas Informáticos
 				en Red (ASIR)</strong>. Me apasiona la administración de sistemas, las redes y la
@@ -132,36 +132,24 @@ import LandingLayout from "@/layouts/Landing.astro";
 			<p>Durante mi formación he trabajado con:</p>
 			<div class="mt-4 grid gap-3 sm:grid-cols-2">
 				<!-- Tarjeta 1 -->
-				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
-					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
-						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Redes & Seguridad</p>
-						<p class="text-muted text-xs">pfSense · VLANs · NAT · Wazuh SIEM</p>
-					</div>
+				<div class="reveal border-accent/20 hover:border-accent rounded-md border p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(42,188,137,0.15)]" data-cursor="-pointer" style="transition-delay: 200ms;">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Redes & Seguridad</p>
+					<p class="text-muted text-xs">pfSense · VLANs · NAT · Wazuh SIEM</p>
 				</div>
 				<!-- Tarjeta 2 -->
-				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
-					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
-						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Contenedores & Servers</p>
-						<p class="text-muted text-xs">Docker · Docker Compose · Ubuntu Server</p>
-					</div>
+				<div class="reveal border-accent/20 hover:border-accent rounded-md border p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(42,188,137,0.15)]" data-cursor="-pointer" style="transition-delay: 300ms;">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Contenedores & Servers</p>
+					<p class="text-muted text-xs">Docker · Docker Compose · Ubuntu Server</p>
 				</div>
 				<!-- Tarjeta 3 -->
-				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
-					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
-						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Virtualización</p>
-						<p class="text-muted text-xs">VirtualBox · VMware</p>
-					</div>
+				<div class="reveal border-accent/20 hover:border-accent rounded-md border p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(42,188,137,0.15)]" data-cursor="-pointer" style="transition-delay: 400ms;">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Virtualización</p>
+					<p class="text-muted text-xs">VirtualBox · VMware</p>
 				</div>
 				<!-- Tarjeta 4 -->
-				<div class="group relative overflow-hidden rounded-md p-[1px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(42,188,137,0.15)]">
-					<div class="card-beam absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-					<div class="bg-[var(--theme-bg)] relative h-full w-full rounded-md border border-accent/20 p-3 transition-colors group-hover:border-transparent">
-						<p class="text-accent mb-1 text-xs font-semibold uppercase transition-colors group-hover:text-link">Documentación & Web</p>
-						<p class="text-muted text-xs">LaTeX · Markdown · Astro · Git</p>
-					</div>
+				<div class="reveal border-accent/20 hover:border-accent rounded-md border p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(42,188,137,0.15)]" data-cursor="-pointer" style="transition-delay: 500ms;">
+					<p class="text-accent mb-1 text-xs font-semibold uppercase">Documentación & Web</p>
+					<p class="text-muted text-xs">LaTeX · Markdown · Astro · Git</p>
 				</div>
 			</div>
 		</div>
@@ -171,8 +159,8 @@ import LandingLayout from "@/layouts/Landing.astro";
 	<!-- PROYECTOS                                      -->
 	<!-- ═══════════════════════════════════════════════ -->
 	<section class="mx-auto max-w-3xl scroll-mt-32 px-4 py-24 sm:px-8" id="proyectos">
-		<h2 class="title mb-4 text-xl">Proyectos</h2>
-		<p class="text-muted mb-10 text-sm">
+		<h2 class="title mb-4 text-xl reveal">Proyectos</h2>
+		<p class="text-muted mb-10 text-sm reveal" style="transition-delay: 150ms;">
 			Proyectos realizados durante el CFGS de ASIR. Algunos incluyen documentación técnica
 			detallada.
 		</p>
@@ -180,9 +168,14 @@ import LandingLayout from "@/layouts/Landing.astro";
 		<div class="space-y-6">
 			<!-- Proyecto: Portfolio -->
 			<article
-				class="border-accent/20 group rounded-md border p-5 transition-all hover:border-accent"
+				class="glow-card reveal relative overflow-hidden border-accent/20 hover:border-accent group rounded-md border p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(42,188,137,0.15)] cursor-pointer"
+				onclick="window.location.href='/guias/desarrollo-portfolio/'"
+				data-cursor="-pointer"
+				style="transition-delay: 300ms;"
 			>
-				<div class="mb-2 flex flex-wrap items-center gap-2">
+				<div class="glow-pointer pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+				<div class="relative z-10">
+					<div class="mb-2 flex flex-wrap items-center gap-2">
 					<h3 class="text-base font-semibold">
 						<a class="cactus-link" href="/guias/desarrollo-portfolio/">
 							🌐 Portfolio Personal
@@ -200,10 +193,11 @@ import LandingLayout from "@/layouts/Landing.astro";
 						<span class="bg-accent/10 text-accent rounded-md px-2 py-0.5 text-xs">{tag}</span>
 					))}
 				</div>
+				</div>
 			</article>
 
 			<!-- Placeholder para futuros proyectos -->
-			<div class="border-muted/20 text-muted rounded-md border border-dashed p-5 text-center text-sm">
+			<div class="reveal border-muted/20 text-muted rounded-md border border-dashed p-5 text-center text-sm" style="transition-delay: 400ms;">
 				Más proyectos próximamente...
 			</div>
 		</div>
@@ -219,45 +213,86 @@ import LandingLayout from "@/layouts/Landing.astro";
 		</p>
 		<SocialList />
 	</section>
+
+	<style>
+		@keyframes blink {
+			0%, 100% { border-color: transparent; }
+			50% { border-color: var(--color-accent); }
+		}
+
+		/* Efecto glow adaptativo según el tema (claro/oscuro) */
+		.hover-glow {
+			transition: filter 0.3s ease, transform 0.3s ease;
+		}
+		.hover-glow:hover {
+			/* Sombra sutil de profundidad en modo claro */
+			filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+			transform: translateY(-4px);
+		}
+		:global([data-theme="dark"]) .hover-glow:hover {
+			/* Resplandor claro e iluminado en modo oscuro */
+			filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
+		}
+
+		/* Animaciones de revelado (Native Intersection Observer) */
+		.reveal {
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+			will-change: opacity, transform;
+		}
+		.reveal.active {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* Efecto Glow Dinámico siguiendo el ratón */
+		.glow-pointer {
+			background: radial-gradient(
+				600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+				rgba(42, 188, 137, 0.1), /* Turquesa/Verde del tema Cactus */
+				transparent 40%
+			);
+		}
+	</style>
+
+	<script is:inline>
+		const setupInteractions = () => {
+			// 1. Configurar Reveal Animations (Intersection Observer)
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('active');
+					}
+				});
+			}, {
+				threshold: 0.1, // Se dispara cuando el 10% del elemento es visible
+				rootMargin: "0px 0px -50px 0px"
+			});
+
+			document.querySelectorAll('.reveal').forEach((el) => {
+				observer.observe(el);
+			});
+
+			// 2. Configurar Glow Effect en tarjetas de proyectos
+			const glowCards = document.querySelectorAll('.glow-card');
+			glowCards.forEach((card) => {
+				card.addEventListener('mousemove', (e) => {
+					const rect = card.getBoundingClientRect();
+					const x = e.clientX - rect.left;
+					const y = e.clientY - rect.top;
+					card.style.setProperty('--mouse-x', `${x}px`);
+					card.style.setProperty('--mouse-y', `${y}px`);
+				});
+			});
+		};
+
+		// Ejecutar interacciones (Compatible con View Transitions)
+		document.addEventListener('astro:page-load', setupInteractions);
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', setupInteractions);
+		} else {
+			setupInteractions();
+		}
+	</script>
 </LandingLayout>
-
-<style>
-	@keyframes blink {
-		0%, 100% { border-color: transparent; }
-		50% { border-color: var(--color-accent); }
-	}
-
-	/* Efecto glow adaptativo según el tema (claro/oscuro) */
-	.hover-glow {
-		transition: filter 0.3s ease, transform 0.3s ease;
-	}
-	.hover-glow:hover {
-		/* Sombra sutil de profundidad en modo claro */
-		filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
-		transform: translateY(-4px);
-	}
-	:global([data-theme="dark"]) .hover-glow:hover {
-		/* Resplandor claro e iluminado en modo oscuro */
-		filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.25));
-	}
-
-	/* Efecto Border Beam para las tarjetas */
-	.card-beam {
-		background: conic-gradient(
-			from 0deg at 50% 50%,
-			transparent 75%,
-			var(--color-accent) 90%,
-			var(--color-link) 100%
-		);
-		animation: spin-beam 4s linear infinite;
-		/* Tamaño sobredimensionado para que al rotar cubra las esquinas rectangulares */
-		width: 250%;
-		height: 250%;
-		top: -75%;
-		left: -75%;
-	}
-	@keyframes spin-beam {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
-</style>
