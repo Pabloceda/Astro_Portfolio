@@ -9,28 +9,20 @@ import { siteConfig } from "../../site.config";
 	<div class="flex sm:flex-col">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}
-			class="inline-flex items-center sm:relative sm:inline-block sm:grayscale sm:hover:filter-none"
+			class="group inline-flex items-center sm:relative sm:inline-block"
 			href="/"
 		>
 			<svg
 				aria-hidden="true"
-				class="me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12"
-				fill="none"
+				class="me-4 h-10 w-10 transition-all duration-300 group-hover:text-accent group-hover:scale-110 sm:absolute sm:-start-16 sm:me-0 sm:h-14 sm:w-14"
 				focusable="false"
-				viewBox="0 0 272 480"
+				viewBox="0 0 400 400"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<title>Astro Cactus Logo</title>
-				<path
-					fill="#cdffb8"
-					d="M181.334 93.333v-40L226.667 80v40zM136.001 53.333 90.667 26.667v426.666L136.001 480zM45.333 220 0 193.334v140L45.333 360z"
-				></path><path
-					fill="#d482ab"
-					d="M90.667 26.667 136.001 0l45.333 26.667-45.333 26.666zM181.334 53.33l45.333-26.72L272 53.33 226.667 80zM136 240l-45.333-26.67v53.34zM0 193.33l45.333-26.72 45.334 26.72L45.333 220zM181.334 93.277 226.667 120l-45.333 26.67z"
-				></path><path
-					fill="#2abc89"
-					d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V220l45.333-26.667v73.334L136 240z"
-				></path>
+				<g transform="translate(0.000000,400.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+					<path d="M0 2000 l0 -2000 2000 0 2000 0 0 2000 0 2000 -2000 0 -2000 0 0 -2000z m1975 1065 c170 -31 276 -79 371 -168 82 -76 121 -132 154 -221 l26 -71 54 -3 c167 -7 292 -37 416 -100 72 -36 174 -117 174 -138 0 -8 -44 -73 -97 -146 l-98 -131 -20 29 c-32 46 -116 124 -155 144 -77 40 -232 57 -265 30 -7 -6 -21 -35 -31 -63 -33 -102 -150 -235 -265 -300 -48 -27 -54 -45 -53 -157 2 -159 44 -283 128 -377 125 -139 381 -158 552 -42 40 27 92 81 113 116 10 16 22 6 111 -84 55 -57 100 -109 100 -116 0 -21 -108 -120 -186 -170 -131 -84 -253 -117 -432 -117 -240 0 -437 88 -575 255 -101 123 -157 259 -177 430 -18 159 5 145 -229 145 -225 0 -225 0 -236 -74 -4 -24 -5 -155 -3 -292 4 -275 8 -295 78 -385 17 -21 29 -43 25 -49 -10 -16 -592 -14 -597 2 -3 7 12 34 33 60 67 85 64 37 64 968 0 943 4 888 -70 982 -19 24 -35 46 -35 51 0 4 235 7 523 7 414 0 539 -3 602 -15z"/>
+					<path d="M1437 2771 c-44 -4 -71 -11 -77 -21 -6 -9 -10 -143 -10 -312 0 -296 0 -297 22 -312 19 -13 57 -16 220 -16 108 0 220 5 247 11 50 10 52 12 117 112 62 95 128 169 183 205 20 14 22 21 17 59 -16 121 -115 223 -251 260 -56 15 -359 24 -468 14z"/>
+				</g>
 			</svg>
 			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
 		</a>

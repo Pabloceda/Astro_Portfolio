@@ -2,7 +2,7 @@
 title: "Primer Post de Prueba"
 description: "Comprobando el formato de los posts del blog y los bloques de código"
 publishDate: "2026-05-10"
-tags: ["Astro", "Prueba"]
+tags: ["Astro", "Prueba", "Linux"]
 ---
 
 ¡Hola mundo! Este es el primer post de prueba para verificar cómo se renderiza el texto en el blog.
